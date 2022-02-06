@@ -299,7 +299,7 @@ class LoadCellProbe:
           force2 = self._compensated_measurement(gcmd)
           if abs(force2) < self.fit_threshold*2:
             break
-          slope = (self.step_size[self.probing_axis]/2)/(force2-force1)
+          slope = (self.step_size[self.probing_axis]/2)/max(force2-force1,1)
           dist = min(abs((force2-self.fit_threshold)*slope),                   \
               self.step_size[self.probing_axis]/2)
           self._move_axis_relative(-self.probing_direction*dist,False)
